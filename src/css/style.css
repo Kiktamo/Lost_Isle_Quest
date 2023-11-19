@@ -17,6 +17,7 @@
     --font-base: 18px;
     --small-font: 0.8em;
     --large-font: 1.2em;
+    --tile-size: 50px;
   }
   * {
     box-sizing: border-box;
@@ -186,3 +187,39 @@
   }
 
   /* End utility classes */
+
+  .map {
+    list-style: none;
+    padding: 0;
+    margin: auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(8, var(--tile-size));
+    grid-template-rows: repeat(8, var(--tile-size));
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .tile{
+    display: flex;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--tertiary-color);
+    border-radius: 15px;
+  }
+
+  .current-tile {
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    filter: drop-shadow(0 0 0.15rem var(--primary-color));
+  }
+
+  .adjacent-tile {
+    border: 2px solid var(--secondary-color);
+    border-radius: 15px;
+    cursor: pointer;
+  }
