@@ -1,0 +1,188 @@
+:root {
+    --font-body: Arial, Helvetica, sans-serif;
+    --font-headline: Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* colors */
+    --primary-color: #f6cd26;
+    --secondary-color: #ac6b26;
+    --tertiary-color: #563226;
+    --light-grey: #393939;
+    --dark-grey: #202020;
+  
+    /* based on --secondary-color */
+    --button-color: var(--secondary-color);
+    --button-hover: #bb7f57;
+    --button-active: #725956;
+  
+    /* sizes */
+    --font-base: 18px;
+    --small-font: 0.8em;
+    --large-font: 1.2em;
+  }
+  * {
+    box-sizing: border-box;
+    color: white;
+    background-color: var(--light-grey);
+  }
+  body {
+    position: relative;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: var(--font-base);
+    color: var(--dark-grey);
+  }
+  img {
+    max-width: 100%;
+    image-rendering: pixelated;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  footer {
+    font-size: var(--small-font);
+    padding: 1em;
+  }
+  .logo {
+    line-height: 60px;
+    width: 245px;
+    overflow: hidden;
+    display: flex;
+    font-size: 30px;
+    text-align: right;
+    font-family: var(--font-headline);
+  }
+  .logo img {
+    width: 60px;
+    height: 60px;
+  }
+  .logo a {
+    text-decoration: none;
+    color: var(--font-body);
+  }
+  .hero {
+    position: relative;
+  }
+  .hero .logo {
+    position: absolute;
+    left: calc(50% - 60px);
+    bottom: -10px;
+    background-color: white;
+  }
+  .logo--square {
+    font-size: var(--small-font);
+    width: 110px;
+    height: 80px;
+  
+    flex-direction: column;
+    align-items: flex-end;
+    box-shadow: 1px 1px 4px var(--light-grey);
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+  }
+  .logo--square img {
+    width: 90px;
+    height: 90px;
+    margin-top: -1.3em;
+  }
+  .logo--square > div {
+    margin-top: -1.7em;
+  }
+  /* utility classes */
+  .highlight {
+    color: var(--tertiary-color);
+  }
+  
+  button {
+    padding: 0.5em 2em;
+    background-color: var(--button-color);
+    background-color: var(--button-color);
+    color: white;
+    margin: auto;
+    display: block;
+    border: 0;
+    font-size: var(--large-font);
+    cursor: pointer;
+    transition: background-color 0.3s; /* Add a smooth transition effect */
+  
+    /* Hover state */
+    &:hover {
+      background-color: var(--button-hover);
+    }
+  
+    /* Active state */
+    &:active {
+      background-color: var(--button-active);
+    }
+    transition: background-color 0.3s; /* Add a smooth transition effect */
+  
+    /* Hover state */
+    &:hover {
+      background-color: var(--button-hover);
+    }
+  
+    /* Active state */
+    &:active {
+      background-color: var(--button-active);
+    }
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    transition: opacity 0.5s;
+    z-index: 1;
+  }
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.4rem;
+    width: 400px;
+    padding: 0.3rem;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    max-width: calc(100% - 80px);
+    max-height: calc(100% - 80px);
+    background-color: #FFDCC4;
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    filter: drop-shadow(0 0 0.25rem var(--primary-color));
+    z-index: 2;
+  }
+
+  .divider-bottom {
+    border-bottom: 2px solid var(--primary-color);
+  }
+
+  .divider-top {
+    padding-top: 1rem;
+    border-top: 2px solid var(--primary-color);
+  }
+  
+  .hidden {
+    visibility: hidden;
+  }
+
+  .none {
+    display: none;
+  }
+
+  .invisible {
+    opacity: 0;
+    pointer-events: none
+  }
+
+  /* End utility classes */

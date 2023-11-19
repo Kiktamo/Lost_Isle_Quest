@@ -1,0 +1,10 @@
+[
+    {
+        "id": "test_event",
+        "type": "TEST",
+        "message": "This is a test event +5 Gold",
+        "target": "gold",
+        "effect": "add",
+        "input": 5
+    }
+]
