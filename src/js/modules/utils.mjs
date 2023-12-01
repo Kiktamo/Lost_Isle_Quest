@@ -45,6 +45,17 @@ function convertToJson(res) {
   }
 }
 
+export function formDataToJSON(formElement) {
+  const formData = new FormData(formElement),
+    convertedJSON = {};
+
+  formData.forEach(function (value, key) {
+    convertedJSON[key] = value;
+  });
+
+  return convertedJSON;
+}
+
 export function renderListWithTemplate(
   templateFn,
   parentElement,
@@ -164,4 +175,22 @@ export function addToEventLog(message) {
   eventsLog.push(message);
 
   setLocalStorage('events', eventsLog);
+}
+
+export function initializePlayer(player) {
+  const newPlayer = {
+    name: player.name,
+    level: 1,
+    exp: 0,
+    maxHp: 20,
+    maxMp: 20,
+    hp: 20,
+    mp: 20,
+    stats: {'str': player.str, 'spd': player.spd, 'int': player.int},
+    position: {'x': 1, 'y': 1}
+  }
+
+  setLocalStorage('player', newPlayer);
+  setLocalStorage('map', null);
+  setLocalStorage('events', null);
 }

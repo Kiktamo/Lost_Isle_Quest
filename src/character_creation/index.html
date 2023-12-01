@@ -11,10 +11,48 @@
   </head>
   <body>
     <header></header>
+    <main>
     <div class="overlay invisible"></div>
     <div class="modal none"></div>
     <h1>Character Creation</h1>
-    <div></div>
+    <div>
+      <form name="character-creation">
+        <fieldset>
+          <legend>Character Details</legend>
+          <img src="../images/player.png" alt="Player Character Icon">
+          <label for="name">Player Name</label>
+          <input name="name" id="name" type="text" value="Player" required />
+        </fieldset>
+        <fieldset>
+          <legend>Stats Allocation</legend>
+          <label>Stats Pool: <span id="pool"></span></label>
+          <ul>
+            <li>
+              <label for="hp">Health Points:</label>
+              <p name="hp" id="hp">20</p>
+            </li>
+            <li>
+              <label for="mp">Magic Points:</label>
+              <p name="mp" id="mp">20</p>
+            </li>
+            <li>
+              <label for="str">Strength:</label>
+              <input class="stats" name="str" id="str" type="number" value="5" min="1" required></input>
+            </li>
+            <li>
+              <label for="spd">Speed:</label>
+              <input class="stats" name="spd" id="spd" type="number" value="5" min="1" required></input>
+            </li>
+            <li>
+              <label for="int">Intelligence:</label>
+              <input class="stats" name="int" id="int" type="number" value="5" min="1" required></input>
+            </li>
+          </ul>
+        </fieldset>
+        <button id="character-creation-submit" type="submit">Begin</button>
+      </form>
+    </div>
+  </main>
     <footer></footer>
   </body>
 </html>
