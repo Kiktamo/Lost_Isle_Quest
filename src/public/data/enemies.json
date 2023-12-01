@@ -1,11 +1,11 @@
 [
-    {
-        "id": "test_monster",
-        "type": "MONSTER",
-        "name": "Test Monster",
-        "health": 100,
-        "attack": 5,
-        "defense": 5,
-        "drop_category": "TEST_ITEMS"
-    }
+  {
+    "id": "test_monster",
+    "type": "MONSTER",
+    "name": "Test Monster",
+    "health": 100,
+    "attack": 5,
+    "defense": 5,
+    "drop_category": "TEST_ITEMS"
+  }
 ]

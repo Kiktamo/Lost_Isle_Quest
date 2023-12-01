@@ -1,8 +1,8 @@
 [
-    {
-        "id": "test_item",
-        "type": "QUEST_ITEM",
-        "name": "Test Item",
-        "description": "This is a test item"
-    }
+  {
+    "id": "test_item",
+    "type": "QUEST_ITEM",
+    "name": "Test Item",
+    "description": "This is a test item"
+  }
 ]

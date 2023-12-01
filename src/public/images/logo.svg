@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 600 600" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1.4359,0,0,1.4359,-267.179,-123.59)">
+        <path d="M590,197.5C590,143.688 546.312,100 492.5,100L297.5,100C243.688,100 200,143.688 200,197.5L200,392.5C200,446.312 243.688,490 297.5,490L492.5,490C546.312,490 590,446.312 590,392.5L590,197.5Z" style="fill:rgb(57,57,57);stroke:rgb(246,205,38);stroke-width:3.48px;"/>
+    </g>
+    <g transform="matrix(1.6129,0,0,1.6129,-228.987,-127.419)">
+        <ellipse cx="327.972" cy="265" rx="142.028" ry="155" style="fill:rgb(118,159,166);"/>
+    </g>
+    <g transform="matrix(1.24559,0,0,1.24559,-61.2213,-111.045)">
+        <circle cx="290" cy="330" r="150" style="fill:rgb(189,163,81);"/>
+    </g>
+    <g transform="matrix(1.09596,0,0,1.09596,-17.8282,-61.6666)">
+        <circle cx="290" cy="330" r="150" style="fill:rgb(139,145,80);"/>
+    </g>
+    <g>
+        <path d="M260,240L240,240L240,360L360,360L360,240L340,240L340,260L320,260L320,240L310,240L310,260L290,260L290,240L280,240L280,260L260,260L260,240Z" style="fill:rgb(99,97,103);"/>
+        <g transform="matrix(0.5,0,0,0.666667,150,120)">
+            <path d="M340,322.5C340,310.074 326.569,300 310,300L290,300C273.431,300 260,310.074 260,322.5L260,360L340,360L340,322.5Z"/>
+        </g>
+    </g>
+</svg>

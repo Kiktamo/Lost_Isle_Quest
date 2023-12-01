@@ -1,3 +1,5 @@
+import { headerTemplate, footerTemplate } from './templates.mjs';
+
 // wrapper for querySelector...returns matching element
 export function qs(selector, parent = document) {
   return parent.querySelector(selector);
@@ -29,12 +31,26 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 
+export function getData(category) {
+  return fetch(`../data/${category}.json`)
+    .then(convertToJson)
+    .then((data) => data);
+}
+
+function convertToJson(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw new Error('Bad Response');
+  }
+}
+
 export function renderListWithTemplate(
   templateFn,
   parentElement,
   list,
   position = 'afterbegin',
-  clear = true
+  clear = true,
 ) {
   if (clear) {
     parentElement.innerHTML = '';
@@ -49,7 +65,7 @@ export async function renderWithTemplate(
   data,
   callback,
   position = 'afterbegin',
-  clear = true
+  clear = true,
 ) {
   if (clear) {
     parentElement.innerHTML = '';
@@ -62,28 +78,45 @@ export async function renderWithTemplate(
   }
 }
 
-export async function toggleModal(templateFn, data, callback){
-  modal = qs('#modal');
-  overlay = qs('#overlay');
+export async function loadHeaderFooter(headerData, footerData) {
+  const header = qs('header');
+  const footer = qs('footer');
+
+  header.classList.add('divider-bottom');
+  footer.classList.add('divider-top');
+
+  renderWithTemplate(headerTemplate, header, headerData);
+  renderWithTemplate(footerTemplate, footer, footerData);
+}
+
+export async function toggleModal(templateFn, data, callback) {
+  const modal = qs('#modal');
+  const overlay = qs('#overlay');
+  const modalButton = document
+    .createElement('span')
+    .classList.add('modal-button');
 
   // Check if a modal is being displayed
   if (modal.classList.contains('none')) {
     // If not then render with the given template and arguments.
-    renderWithTemplate(templateFn, modal, data, callback)
+    renderWithTemplate(templateFn, modal, data, callback);
+    modalButton.addEventListener('click', function () {
+      toggleModal(templateFn, data, callback);
+    });
+    modal.insertBefore(modalButton, modal.firstChild());
   } else {
     // Clear the modal otherwise
-    modal.querySelectorAll('*').forEach( n => n.remove() );
+    modal.querySelectorAll('*').forEach((n) => n.remove());
   }
 
   // At the end toggle visibility regardless
   modal.classList.toggle('none');
-  overlay.classList.toggle('none');
-
+  overlay.classList.toggle('invisible');
 }
 
 export function alertMessage(message, scroll = true) {
   // Prevent alert spam
-  const alerts = document.getElementsByClassName('alert')
+  const alerts = document.getElementsByClassName('alert');
 
   if (alerts.length >= 5) {
     alerts[0].remove();
@@ -115,4 +148,20 @@ export function alertMessage(message, scroll = true) {
   if (scroll) {
     window.scrollTo(0, 0);
   }
+}
+
+export function addToEventLog(message) {
+  let eventsLog = getLocalStorage('events');
+
+  if (!eventsLog) {
+    eventsLog = [];
+  }
+
+  while (eventsLog.length >= 5) {
+    eventsLog.shift();
+  }
+
+  eventsLog.push(message);
+
+  setLocalStorage('events', eventsLog);
 }

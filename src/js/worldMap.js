@@ -1,3 +1,5 @@
-import renderMap from "./modules/worldMapScreen.mjs";
+import renderMap from './modules/worldMapScreen.mjs';
+import { loadHeaderFooter } from './modules/utils.mjs';
 
-renderMap('.map');
+loadHeaderFooter();
+renderMap();

@@ -1,8 +1,66 @@
 [
-    {
-        "id": "test_tile",
-        "type": "LAND",
-        "allowed_adjacent": ["test_tile"],
-        "event_types": ["TEST"]
-    }
+  {
+    "id": "ocean",
+    "name": "Ocean",
+    "type": "WATER",
+    "allowed_adjacent": ["beach", "plain"],
+    "event_types": ["NONE"],
+    "color_code": "#769fa6"
+  },
+  {
+    "id": "beach",
+    "name": "Beach",
+    "type": "LAND",
+    "allowed_adjacent": ["beach", "plain"],
+    "event_types": ["BEACH", "LAND"],
+    "color_code": "#bda351"
+  },
+  {
+    "id": "plain",
+    "name": "Plains",
+    "type": "LAND",
+    "allowed_adjacent": ["plain", "forest", "hills"],
+    "event_types": ["PLAIN", "LAND"],
+    "color_code": "#8b9150"
+  },
+  {
+    "id": "forest",
+    "name": "Forest",
+    "type": "LAND",
+    "allowed_adjacent": ["plain", "forest", "hills"],
+    "event_types": ["FOREST", "LAND"],
+    "color_code": "#446350"
+  },
+  {
+    "id": "hills",
+    "name": "Hills",
+    "type": "LAND",
+    "allowed_adjacent": ["plain", "hills", "mountain"],
+    "event_types": ["HILLS", "LAND"],
+    "color_code": "#557d55"
+  },
+  {
+    "id": "mountain",
+    "name": "Mountains",
+    "type": "LAND",
+    "allowed_adjacent": ["hills", "plain"],
+    "event_types": ["MOUNTAIN", "LAND"],
+    "color_code": "#bfb8b4"
+  },
+  {
+    "id": "dungeon",
+    "name": "Dungeon",
+    "type": "CONSTRUCT",
+    "allowed_adjacent": ["none"],
+    "event_types": ["DUNGEON"],
+    "color_code": "#636167"
+  },
+  {
+    "id": "town",
+    "name": "Town",
+    "type": "CONSTRUCT",
+    "allowed_adjacent": ["none"],
+    "event_types": ["TOWN"],
+    "color_code": "#86735b"
+  }
 ]

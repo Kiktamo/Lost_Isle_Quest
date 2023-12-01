@@ -1,21 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Lost Isle Quest | World Map</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
-  <link rel="stylesheet" href="/css/style.css" />
-  <script src="/js/worldMap.js" type="module"></script>
-  <link rel="icon" href="/favicon.png">
-</head>
-<body>
-  <header></header>
-  <div class="overlay invisible"></div>
-  <div class="modal none"></div>
-  <h1>World Map</h1>
-  <img style="width: 100px; display: block; margin: auto;" src="/images/test.png">
-  <div><ul class="map"></ul></div>
-  <footer></footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lost Isle Quest | World Map</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/worldMap.js" type="module"></script>
+    <link rel="icon" href="/favicon.png" />
+  </head>
+  <body>
+    <header></header>
+    <div class="overlay invisible"></div>
+    <div class="modal none"></div>
+    <ul class="map-nav">
+      <li><a href="#" class="active">Map</a></li>
+      <li><a href="../status/">Character</a></li>
+      <li><a href="">Explore</a></li>
+    </ul>
+    <h1>World Map<span class="tile-type"></span></h1>
+    <div><ul class="map"></ul></div>
+    <div class="event-log">
+      <h2>History:</h2>
+      <ul class="events"></ul>
+    </div>
+    <footer></footer>
+  </body>
 </html>
