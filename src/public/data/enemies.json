@@ -1,11 +1,12 @@
 [
   {
-    "id": "test_monster",
+    "id": "test",
     "type": "MONSTER",
     "name": "Test Monster",
-    "health": 100,
+    "health": 10,
     "attack": 5,
     "defense": 5,
+    "exp": 100,
     "drop_category": "TEST_ITEMS"
   }
 ]

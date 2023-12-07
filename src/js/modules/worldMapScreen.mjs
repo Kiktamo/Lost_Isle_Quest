@@ -1,27 +1,33 @@
 import {
   qs,
-  getLocalStorage,
-  setLocalStorage,
   renderListWithTemplate,
   getData,
-  addToEventLog,
+  getRandomArbitrary,
 } from './utils.mjs';
-import { mapTileTemplate, eventLogTemplate } from './templates.mjs';
+import { mapTileTemplate } from './templates.mjs';
+import {
+  addToEventLog,
+  displayEvents,
+  getMap,
+  getPlayer,
+  setMap,
+  setPlayer,
+} from './dataManagment.mjs';
 
-const player = getLocalStorage('player');
 const selector = '.map';
 const maxSize = 8;
 
 export default async function renderMap() {
+  const player = getPlayer();
   const mapList = qs(selector);
-  var map = getLocalStorage('map');
+  let map = getMap();
 
   if (!map) {
     map = generateMap();
     map = await chooseTileType(map);
     spawnPlayer();
     addToEventLog('You awaken on the island.');
-    setLocalStorage('map', map);
+    setMap(map);
   }
 
   renderListWithTemplate(mapTileTemplate, mapList, map);
@@ -103,10 +109,18 @@ async function chooseTileType(map) {
     });
   });
 
+  map[maxSize - 2][maxSize - 2].type = tileTypes.find(
+    (tileType) => tileType.id === 'dungeon',
+  );
+  map[maxSize / 2 - 1][maxSize / 2 - 1].type = tileTypes.find(
+    (tileType) => tileType.id === 'town',
+  );
+
   return map;
 }
 
-function setupTiles(mapList, selector) {
+function setupTiles(mapList) {
+  const player = getPlayer();
   const tiles = mapList.getElementsByClassName('tile');
   const adjacentTiles = [];
 
@@ -141,21 +155,67 @@ function handleMove() {
 }
 
 function spawnPlayer() {
+  const player = getPlayer();
   player.position = { x: 1, y: 1 };
-  setLocalStorage('player', player);
+  setPlayer(player);
 }
 
-function movePlayer(position, tileName) {
+async function movePlayer(position, tileName) {
+  const player = getPlayer();
   player.position = position;
-  setLocalStorage('player', player);
-  addToEventLog(`You move to ${tileName}`);
+  setPlayer(player);
+
+  const event = await triggerEvent();
+
+  if (!event) {
+    addToEventLog(`You move to ${tileName}`);
+  }
 
   renderMap();
 }
 
-function displayEvents() {
-  const events = qs('.events');
-  const eventsLog = getLocalStorage('events');
+async function triggerEvent() {
+  const player = getPlayer();
 
-  renderListWithTemplate(eventLogTemplate, events, eventsLog);
+  const event = getRandomArbitrary(1, 10);
+
+  switch (event) {
+    case 1:
+    case 2:
+    case 3:
+      const gold = getRandomArbitrary(3, 20);
+      addToEventLog(`You've found ${gold} gold`);
+      player.gold += gold;
+      setPlayer(player);
+      return true;
+    case 4:
+    case 5:
+      const items = await getData('items');
+
+      const item = items.find((item) => item.id === 'health_potion');
+      const quantity = getRandomArbitrary(1, 3);
+
+      const existingItem = player.inventory.find(
+        (existingItem) => existingItem.id === item.id,
+      );
+
+      addToEventLog(`You've found ${item.name} x${quantity}`);
+
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        item.quantity = quantity;
+        player.inventory.push(item);
+      }
+
+      setPlayer(player);
+      return true;
+    case 6:
+      const monster = 'test';
+      addToEventLog(`You've ran into ${monster}`);
+      window.location = `/battle/index.html?enemy=${monster}`;
+      return true;
+    default:
+      return false;
+  }
 }

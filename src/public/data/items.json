@@ -3,6 +3,27 @@
     "id": "test_item",
     "type": "QUEST_ITEM",
     "name": "Test Item",
+    "drop_category": "TEST_ITEMS",
     "description": "This is a test item"
+  },
+  {
+    "id": "health_potion",
+    "type": "CONSUMABLE",
+    "name": "Health Potion",
+    "drop_category": "HEALING",
+    "description": "Heals 5 hp",
+    "use": "HEALING",
+    "target": "hp",
+    "amount": 5
+  },
+  {
+    "id": "stick",
+    "type": "WEAPON",
+    "name": "Wooden Stick",
+    "drop_category": "WEAPONS",
+    "description": "A simple wooden stick",
+    "use": "EQUIPMENT",
+    "target": "atk",
+    "amount": 3
   }
 ]

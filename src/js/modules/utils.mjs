@@ -101,20 +101,19 @@ export async function loadHeaderFooter(headerData, footerData) {
 }
 
 export async function toggleModal(templateFn, data, callback) {
-  const modal = qs('#modal');
-  const overlay = qs('#overlay');
-  const modalButton = document
-    .createElement('span')
-    .classList.add('modal-button');
+  const modal = qs('.modal');
+  const overlay = qs('.overlay');
+  const modalButton = document.createElement('span');
+  modalButton.classList.add('modal-button');
 
   // Check if a modal is being displayed
   if (modal.classList.contains('none')) {
     // If not then render with the given template and arguments.
     renderWithTemplate(templateFn, modal, data, callback);
+    modal.insertBefore(modalButton, modal.firstChild);
     modalButton.addEventListener('click', function () {
       toggleModal(templateFn, data, callback);
     });
-    modal.insertBefore(modalButton, modal.firstChild());
   } else {
     // Clear the modal otherwise
     modal.querySelectorAll('*').forEach((n) => n.remove());
@@ -161,36 +160,6 @@ export function alertMessage(message, scroll = true) {
   }
 }
 
-export function addToEventLog(message) {
-  let eventsLog = getLocalStorage('events');
-
-  if (!eventsLog) {
-    eventsLog = [];
-  }
-
-  while (eventsLog.length >= 5) {
-    eventsLog.shift();
-  }
-
-  eventsLog.push(message);
-
-  setLocalStorage('events', eventsLog);
-}
-
-export function initializePlayer(player) {
-  const newPlayer = {
-    name: player.name,
-    level: 1,
-    exp: 0,
-    maxHp: 20,
-    maxMp: 20,
-    hp: 20,
-    mp: 20,
-    stats: {'str': player.str, 'spd': player.spd, 'int': player.int},
-    position: {'x': 1, 'y': 1}
-  }
-
-  setLocalStorage('player', newPlayer);
-  setLocalStorage('map', null);
-  setLocalStorage('events', null);
+export function getRandomArbitrary(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
 }

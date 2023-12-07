@@ -1,43 +1,41 @@
-import { qs } from "./utils.mjs";
+import { qs } from './utils.mjs';
 
 const maxStats = 20;
 
 export default async function setupCharacterCreation() {
+  updatePool();
 
-    updatePool();
+  const statsFields = document.querySelectorAll('.stats');
 
-    const statsFields = document.querySelectorAll('.stats');
+  statsFields.forEach((field) => {
+    field.setAttribute('max', maxStats - getAllocated() + field.value);
 
-    statsFields.forEach(field => {
-        field.setAttribute('max', maxStats - getAllocated() + field.value);
-
-        field.addEventListener('change', updateStats); 
-      });
-
+    field.addEventListener('change', updateStats);
+  });
 }
 
 function getAllocated() {
-    const statsFields = document.querySelectorAll('.stats');
+  const statsFields = document.querySelectorAll('.stats');
 
-    let points = 0;
+  let points = 0;
 
-    statsFields.forEach(field => {
-        points += parseInt(field.value);
-      });
+  statsFields.forEach((field) => {
+    points += parseInt(field.value);
+  });
 
-    return points;
+  return points;
 }
 
-function updatePool(){
-    const statPool = qs('#pool');
-    statPool.innerHTML = maxStats - getAllocated();
+function updatePool() {
+  const statPool = qs('#pool');
+  statPool.innerHTML = maxStats - getAllocated();
 }
 
-function updateStats(){
-    updatePool();
-    this.setAttribute('max', (maxStats - getAllocated()) + this.value);
+function updateStats() {
+  updatePool();
+  this.setAttribute('max', maxStats - getAllocated() + this.value);
 
-    if (parseInt(this.value) > maxStats){
-        this.value = maxStats;
-    }
+  if (parseInt(this.value) > maxStats) {
+    this.value = maxStats;
+  }
 }
