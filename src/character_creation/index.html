@@ -16,17 +16,20 @@
       <div class="modal none"></div>
       <h1>Character Creation</h1>
       <div>
-        <form name="character-creation">
-          <fieldset>
+        <form name="character-creation" class="character-creation-form">
+          <fieldset class="character-details">
             <legend>Character Details</legend>
             <img src="../images/player.png" alt="Player Character Icon" />
-            <label for="name">Player Name</label>
+            <label for="name">Player Name:</label>
             <input name="name" id="name" type="text" value="Player" required />
           </fieldset>
-          <fieldset>
+          <fieldset class="stats-allocation">
             <legend>Stats Allocation</legend>
-            <label>Stats Pool: <span id="pool"></span></label>
-            <ul>
+            <div class="stat-pool">
+              <label for="pool">Stats Pool:</label>
+              <span name="pool" id="pool"></span>
+            </div>
+            <ul class="character-creation-stats">
               <li>
                 <label for="hp">Health Points:</label>
                 <p name="hp" id="hp">20</p>
@@ -44,6 +47,7 @@
                   type="number"
                   value="5"
                   min="1"
+                  autocomplete="off"
                   required
                 />
               </li>
@@ -56,6 +60,7 @@
                   type="number"
                   value="5"
                   min="1"
+                  autocomplete="off"
                   required
                 />
               </li>
@@ -68,6 +73,7 @@
                   type="number"
                   value="5"
                   min="1"
+                  autocomplete="off"
                   required
                 />
               </li>

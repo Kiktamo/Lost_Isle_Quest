@@ -16,7 +16,7 @@ export function footerTemplate(data) {
 }
 
 export function battleTemplate(battle) {
-  let battleView = `<img src='${battle.enemy.id}.png' alt='${battle.enemy.name}'>
+  let battleView = `<img class='enemy-img' src='../images/${battle.enemy.id}.png' alt='${battle.enemy.name}'>
   <ul class='turn-log'>`;
   battle.log.forEach((message) => {
     battleView += `<li>${message}</li>`;
@@ -41,7 +41,7 @@ export function mapTileTemplate(row) {
     if (tile.type) {
       color = tile.type.color_code;
     }
-    mapRow += `<li class="tile" style="background-color: ${color};" data-x="${tile.position.x}" data-y="${tile.position.y}" data-name="${tile.type.name}" data-type="${tile.type.type}"><img style="background-color: ${color}; width: 80%;" src="../images/${tile.type.id}.png"></li>`;
+    mapRow += `<li class="tile" style="background-color: ${color};" data-x="${tile.position.x}" data-y="${tile.position.y}" data-name="${tile.type.name}" data-type="${tile.type.type}"><img style="background-color: ${color};" src="../images/${tile.type.id}.png"></li>`;
   });
   return mapRow;
 }
@@ -71,7 +71,7 @@ export function statsTemplate(player) {
 }
 
 export function inventoryTemplate(item) {
-  let itemDisplay = `<li><img src='${item.id}.png' alt='${item.name}'><p>${item.description}</p><p>Quantity:${item.quantity}</p>`;
+  let itemDisplay = `<li><img src='../images/${item.id}.png' alt='${item.name}'><p>${item.description}</p><p>Quantity:${item.quantity}</p>`;
   if (item.type === 'CONSUMABLE') {
     itemDisplay += `<button class='consumable-button' data-id='${item.id}'>Use</button>`;
   }

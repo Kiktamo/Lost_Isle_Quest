@@ -3,6 +3,7 @@ import {
   setLocalStorage,
   qs,
   renderListWithTemplate,
+  clearLocalStorage,
 } from './utils.mjs';
 import { eventLogTemplate } from './templates.mjs';
 
@@ -16,6 +17,10 @@ export function setMap(map) {
 
 export function getEnemy() {
   return getLocalStorage('enemy');
+}
+
+export function removeEnemy() {
+  clearLocalStorage('enemy');
 }
 
 export function setEnemy(enemy) {
@@ -65,8 +70,8 @@ export function initializePlayer(player) {
   };
 
   setLocalStorage('player', newPlayer);
-  setLocalStorage('map', null);
-  setLocalStorage('events', null);
+  clearLocalStorage('map');
+  clearLocalStorage('events');
 }
 
 export function addToEventLog(message) {

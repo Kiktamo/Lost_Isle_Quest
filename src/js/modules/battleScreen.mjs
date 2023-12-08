@@ -5,7 +5,7 @@ import {
   setClick,
   getRandomArbitrary,
 } from './utils.mjs';
-import { addToEventLog } from './dataManagment.mjs';
+import { addToEventLog, removeEnemy } from './dataManagment.mjs';
 import { battleTemplate } from './templates.mjs';
 import { getEnemy, getPlayer, setEnemy, setPlayer } from './dataManagment.mjs';
 
@@ -59,19 +59,24 @@ function setupBattleButtons() {
 function attack() {
   const enemy = getEnemy();
   const player = getPlayer();
+  const enemyImage = qs('.enemy-img');
 
   let playerDamage = getRandomArbitrary(0, 10);
 
   if (playerDamage > 0) {
-    playerDamage += player.stats.str / 10;
+    playerDamage += Math.round(player.stats.str / 10);
     addToBattleLog(`You strike the ${enemy.name} for ${playerDamage}`);
     enemy.health -= playerDamage;
     setEnemy(enemy);
+    enemyImage.classList.toggle('flashing-object');
+    enemyImage.addEventListener('animationend', (event) => {
+      this.classList.toggle('flashing-object');
+      renderBattle();
+    });
   } else {
     addToBattleLog(`You miss the ${enemy.name}`);
+    renderBattle();
   }
-
-  renderBattle();
 }
 
 function items() {
@@ -85,11 +90,12 @@ function run() {
 
   if (success >= 8) {
     addToEventLog(`You successfully run away from ${enemy.name}.`);
-    setEnemy(null);
+    removeEnemy();
     window.location = '/world_map/';
   } else {
     addToBattleLog('You fail to get away.');
   }
+  renderBattle();
 }
 
 function victory() {
@@ -101,6 +107,6 @@ function victory() {
   addToEventLog(
     `You've defeated the ${enemy.name}, and earned ${enemy.exp} experience.`,
   );
-  setEnemy(null);
+  removeEnemy();
   window.location = '/world_map/';
 }
