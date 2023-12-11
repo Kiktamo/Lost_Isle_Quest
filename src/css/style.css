@@ -267,7 +267,7 @@ button {
   grid-template-columns: auto;
   grid-template-rows: auto;
   margin: 1rem auto;
-  max-width: 70%;
+  max-width: 600px;
 }
 
 .intro img {
